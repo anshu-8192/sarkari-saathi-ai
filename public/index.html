@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="description" content="Sarkari Saathi AI - सरकारी योजनाओं और सेवाओं की जानकारी आसान हिंदी में।" />
+  <title>Sarkari Saathi AI — सरकारी जानकारी, आसान भाषा में</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Noto Sans Devanagari', 'Inter', 'sans-serif'] },
+          boxShadow: { soft: '0 15px 40px rgba(15, 23, 42, .08)' }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans Devanagari', Inter, sans-serif; }
+    .gradient-bg { background: radial-gradient(circle at top right, rgba(59,130,246,.20), transparent 35%), linear-gradient(135deg,#eff6ff 0%,#ffffff 48%,#f0fdf4 100%); }
+    .dark .gradient-bg { background: radial-gradient(circle at top right, rgba(37,99,235,.22), transparent 35%), linear-gradient(135deg,#0f172a,#111827 55%,#052e16); }
+    .glass { backdrop-filter: blur(14px); background: rgba(255,255,255,.78); }
+    .dark .glass { background: rgba(15,23,42,.82); }
+    .page { display:none; }
+    .page.active { display:block; }
+    .toast { transform: translateY(20px); opacity:0; pointer-events:none; transition:.25s; }
+    .toast.show { transform:translateY(0); opacity:1; }
+    .typing span { animation: blink 1.2s infinite; }
+    .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+    @keyframes blink { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors">
+  <header class="sticky top-0 z-40 border-b border-slate-200/70 dark:border-slate-800 glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <button onclick="showPage('home')" class="flex items-center gap-3 text-left">
+        <div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white grid place-items-center text-xl shadow-lg">🇮🇳</div>
+        <div>
+          <div class="font-extrabold text-lg leading-tight">Sarkari Saathi <span class="text-blue-600">AI</span></div>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400">सरकारी जानकारी, आसान भाषा में</div>
+        </div>
+      </button>
+      <nav class="hidden md:flex items-center gap-1">
+        <button data-nav="home" onclick="showPage('home')" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold">होम</button>
+        <button data-nav="schemes" onclick="showPage('schemes')" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold">योजना खोजें</button>
+        <button data-nav="chat" onclick="showPage('chat')" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold">AI से पूछें</button>
+        <button data-nav="services" onclick="showPage('services')" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold">सेवाएँ</button>
+        <button data-nav="about" onclick="showPage('about')" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold">About</button>
+        <span id="aiStatusBtn" class="ml-2 px-3 h-10 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold flex items-center gap-1.5">🤖 <span id="aiStatusLabel">Checking...</span></span>
+        <button onclick="toggleTheme()" class="h-10 w-10 rounded-xl border border-slate-200 dark:border-slate-700 grid place-items-center" aria-label="Theme">🌙</button>
+      </nav>
+      <div class="flex items-center gap-2 md:hidden">
+        <button onclick="toggleTheme()" class="h-10 w-10 rounded-xl border border-slate-200 dark:border-slate-700 grid place-items-center" aria-label="Theme">🌙</button>
+        <button onclick="toggleMobileMenu()" class="h-10 w-10 rounded-xl border border-slate-200 dark:border-slate-700 grid place-items-center" aria-label="Menu">☰</button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 px-4 py-2 flex flex-col gap-1">
+      <button data-nav="home" onclick="showPage('home');toggleMobileMenu()" class="nav-btn text-left px-3 py-2.5 rounded-xl text-sm font-semibold">होम</button>
+      <button data-nav="schemes" onclick="showPage('schemes');toggleMobileMenu()" class="nav-btn text-left px-3 py-2.5 rounded-xl text-sm font-semibold">योजना खोजें</button>
+      <button data-nav="chat" onclick="showPage('chat');toggleMobileMenu()" class="nav-btn text-left px-3 py-2.5 rounded-xl text-sm font-semibold">AI से पूछें</button>
+      <button data-nav="services" onclick="showPage('services');toggleMobileMenu()" class="nav-btn text-left px-3 py-2.5 rounded-xl text-sm font-semibold">सेवाएँ</button>
+      <button data-nav="about" onclick="showPage('about');toggleMobileMenu()" class="nav-btn text-left px-3 py-2.5 rounded-xl text-sm font-semibold">About</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-14">
+          <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-12 items-center">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-200 text-sm font-semibold mb-5">✨ सरल भाषा में सरकारी सहायता</div>
+              <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.12]">सरकारी जानकारी,<br><span class="text-blue-600">अब आसान भाषा में।</span></h1>
+              <p class="mt-5 text-lg text-slate-600 dark:text-slate-300 max-w-xl">योजनाएँ, छात्रवृत्ति, रोजगार, प्रमाणपत्र और सरकारी सेवाओं से जुड़ी जानकारी एक ही जगह खोजें।</p>
+
+              <form onsubmit="askFromHome(event)" class="mt-8 flex flex-col sm:flex-row gap-3 max-w-2xl">
+                <input id="homeQuestion" class="flex-1 px-5 py-4 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 outline-none focus:ring-4 focus:ring-blue-500/20" placeholder="जैसे: 12वीं के बाद छात्रवृत्ति कौन-सी है?" />
+                <button class="px-6 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-lg shadow-blue-600/20">AI से पूछें →</button>
+              </form>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <button onclick="quickAsk('किसान के लिए सरकारी योजना कौन-सी है?')" class="quick-chip">🌾 किसान योजना</button>
+                <button onclick="quickAsk('12वीं पास छात्रों के लिए छात्रवृत्ति बताइए')" class="quick-chip">🎓 छात्रवृत्ति</button>
+                <button onclick="quickAsk('सरकारी नौकरी कहाँ खोजें?')" class="quick-chip">💼 रोजगार</button>
+              </div>
+              <div class="mt-8 flex flex-wrap gap-5 text-sm text-slate-600 dark:text-slate-300">
+                <span>✓ आसान हिंदी</span><span>✓ आधिकारिक लिंक</span><span>✓ मोबाइल फ्रेंडली</span>
+              </div>
+            </div>
+            <div class="relative">
+              <div class="absolute -inset-5 bg-blue-200/40 dark:bg-blue-900/20 blur-3xl rounded-full"></div>
+              <div class="relative rounded-[2rem] bg-white/90 dark:bg-slate-900/90 border border-white dark:border-slate-800 shadow-soft p-6">
+                <div class="flex items-center justify-between mb-5">
+                  <div class="font-bold">Sarkari Saathi Assistant</div>
+                  <span class="text-xs px-2.5 py-1 rounded-full bg-amber-100 text-amber-700">Demo + AI Ready</span>
+                </div>
+                <div class="rounded-2xl bg-slate-100 dark:bg-slate-800 p-4 text-sm leading-7">नमस्ते! मैं सरकारी योजनाओं और सेवाओं की जानकारी आसान भाषा में समझाने में मदद कर सकता हूँ।</div>
+                <div class="mt-4 rounded-2xl bg-blue-600 text-white p-4 text-sm leading-7 ml-8">मुझे छात्रवृत्ति के बारे में जानकारी चाहिए।</div>
+                <div class="mt-4 rounded-2xl bg-slate-100 dark:bg-slate-800 p-4 text-sm leading-7">आप अपनी कक्षा, राज्य और श्रेणी बताकर सही छात्रवृत्ति खोज सकते हैं।</div>
+                <button onclick="showPage('chat')" class="mt-5 w-full py-3 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-200 font-bold">चैट शुरू करें →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14">
+        <div class="flex items-end justify-between gap-4 mb-6">
+          <div><p class="text-blue-600 font-bold text-sm">QUICK ACCESS</p><h2 class="text-2xl sm:text-3xl font-extrabold mt-1">आप क्या खोज रहे हैं?</h2></div>
+          <button onclick="showPage('schemes')" class="text-blue-600 font-bold text-sm">सभी देखें →</button>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <button onclick="openCategory('Education')" class="feature-card"><span>🎓</span><b>शिक्षा और छात्रवृत्ति</b><small>Scholarship, admission और पढ़ाई</small></button>
+          <button onclick="openCategory('Employment')" class="feature-card"><span>💼</span><b>रोजगार और नौकरी</b><small>Jobs, skill और career portals</small></button>
+          <button onclick="openCategory('Agriculture')" class="feature-card"><span>🌾</span><b>किसान योजनाएँ</b><small>कृषि सहायता और लाभ</small></button>
+          <button onclick="openCategory('Health')" class="feature-card"><span>🏥</span><b>स्वास्थ्य सेवाएँ</b><small>Health schemes और services</small></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="schemes" class="page max-w-7xl mx-auto px-4 sm:px-6 py-12">
+      <div class="mb-8"><p class="text-blue-600 font-bold text-sm">SCHEME FINDER</p><h2 class="text-3xl sm:text-4xl font-extrabold mt-1">सरकारी योजना खोजें</h2><p class="text-slate-500 dark:text-slate-400 mt-2">अपनी जरूरत के अनुसार योजनाओं को फ़िल्टर करें।</p></div>
+      <div class="grid lg:grid-cols-[300px_1fr] gap-7">
+        <aside class="h-fit rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-soft">
+          <h3 class="font-extrabold mb-4">फ़िल्टर</h3>
+          <label class="label">श्रेणी</label>
+          <select id="category" class="field"><option value="All">सभी श्रेणियाँ</option><option value="Education">शिक्षा</option><option value="Employment">रोजगार</option><option value="Agriculture">कृषि</option><option value="Health">स्वास्थ्य</option><option value="Business">व्यवसाय</option><option value="Documents">दस्तावेज़</option></select>
+          <label class="label">योजना खोजें</label>
+          <input id="schemeSearch" class="field" placeholder="नाम या keyword..." oninput="findSchemes()" />
+          <label class="label">राज्य</label>
+          <select id="state" class="field"><option>सभी राज्य</option><option>राजस्थान</option><option>उत्तर प्रदेश</option><option>मध्य प्रदेश</option><option>बिहार</option><option>महाराष्ट्र</option><option>अन्य राज्य</option></select>
+          <label class="label">उम्र समूह</label>
+          <select id="age" class="field"><option>सभी उम्र</option><option>विद्यार्थी</option><option>युवा</option><option>वयस्क</option><option>वरिष्ठ नागरिक</option><option>किसान</option></select>
+          <button onclick="findSchemes()" class="w-full mt-3 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold">योजनाएँ खोजें</button>
+          <button onclick="resetFilters()" class="w-full mt-2 py-2.5 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-semibold">फ़िल्टर रीसेट करें</button>
+          <button onclick="openEligibility()" class="w-full mt-3 py-3 rounded-xl border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 font-bold">✓ Eligibility Checker</button>
+        </aside>
+        <div><div id="schemeSummary" class="mb-4 text-sm text-slate-500 dark:text-slate-400"></div><div id="schemeResults" class="grid md:grid-cols-2 gap-5"></div></div>
+      </div>
+    </section>
+
+    <section id="chat" class="page max-w-5xl mx-auto px-4 sm:px-6 py-10">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <div><p class="text-blue-600 font-bold text-sm">AI ASSISTANT</p><h2 class="text-3xl font-extrabold">AI से पूछें</h2><p class="text-sm text-slate-500 mt-1 demo-mode-note">Demo Mode: Gemini API अभी connect नहीं है।</p></div>
+        <button onclick="clearChat()" class="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-bold">नई चैट</button>
+      </div>
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-soft overflow-hidden">
+        <div id="messages" class="p-5 sm:p-7 min-h-[420px] max-h-[560px] overflow-y-auto space-y-5"></div>
+        <div class="border-t border-slate-200 dark:border-slate-800 p-4">
+          <form onsubmit="sendMessage(event)" class="flex gap-2">
+            <textarea id="chatInput" rows="1" class="flex-1 resize-none px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 outline-none focus:ring-4 focus:ring-blue-500/20" placeholder="अपना सवाल लिखें..." onkeydown="handleChatKey(event)"></textarea>
+            <button class="px-5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold">भेजें</button>
+          </form>
+          <div class="text-[11px] text-slate-400 mt-2">Enter से भेजें · Shift + Enter से नई लाइन · जानकारी को आधिकारिक वेबसाइट पर सत्यापित करें।</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="page max-w-7xl mx-auto px-4 sm:px-6 py-12">
+      <div class="mb-8"><p class="text-blue-600 font-bold text-sm">OFFICIAL SERVICES</p><h2 class="text-3xl sm:text-4xl font-extrabold mt-1">उपयोगी सरकारी पोर्टल</h2><p class="text-slate-500 dark:text-slate-400 mt-2">नीचे दिए गए लिंक संबंधित आधिकारिक वेबसाइटों पर ले जाते हैं।</p></div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <a class="service-card" href="https://www.mygov.in/" target="_blank" rel="noopener"><span>🇮🇳</span><div><b>MyGov India</b><p>सरकार से जुड़ने, सुझाव और नागरिक भागीदारी के लिए।</p></div><strong>↗</strong></a>
+        <a class="service-card" href="https://www.ncs.gov.in/" target="_blank" rel="noopener"><span>💼</span><div><b>National Career Service</b><p>नौकरी, career counselling और रोजगार सेवाएँ।</p></div><strong>↗</strong></a>
+        <a class="service-card" href="https://scholarships.gov.in/" target="_blank" rel="noopener"><span>🎓</span><div><b>National Scholarship Portal</b><p>विभिन्न छात्रवृत्ति योजनाओं की जानकारी और आवेदन।</p></div><strong>↗</strong></a>
+        <a class="service-card" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener"><span>📁</span><div><b>DigiLocker</b><p>डिजिटल दस्तावेज़ सुरक्षित रखने और प्राप्त करने के लिए।</p></div><strong>↗</strong></a>
+        <a class="service-card" href="https://www.ugc.gov.in/" target="_blank" rel="noopener"><span>📚</span><div><b>UGC</b><p>उच्च शिक्षा और विश्वविद्यालयों से संबंधित जानकारी।</p></div><strong>↗</strong></a>
+        <a class="service-card" href="https://gem.gov.in/" target="_blank" rel="noopener"><span>🛒</span><div><b>GeM</b><p>सरकारी खरीद और विक्रेताओं से संबंधित पोर्टल।</p></div><strong>↗</strong></a>
+      </div>
+    </section>
+
+    <section id="about" class="page max-w-4xl mx-auto px-4 sm:px-6 py-12">
+      <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-7 sm:p-10 shadow-soft">
+        <p class="text-blue-600 font-bold text-sm">ABOUT THE PROJECT</p>
+        <h2 class="text-3xl font-extrabold mt-2">Sarkari Saathi AI क्या है?</h2>
+        <p class="mt-5 text-slate-600 dark:text-slate-300 leading-8">Sarkari Saathi AI एक AI-assisted web project है, जिसका उद्देश्य सरकारी योजनाओं और सेवाओं की जानकारी को सरल हिंदी में समझने में मदद करना है।</p>
+        <div class="grid sm:grid-cols-2 gap-4 mt-7">
+          <div class="p-5 rounded-2xl bg-blue-50 dark:bg-blue-900/20"><b>✓ सरल अनुभव</b><p class="text-sm mt-2 text-slate-600 dark:text-slate-300">कम तकनीकी भाषा और साफ इंटरफेस।</p></div>
+          <div class="p-5 rounded-2xl bg-green-50 dark:bg-green-900/20"><b>✓ आधिकारिक लिंक</b><p class="text-sm mt-2 text-slate-600 dark:text-slate-300">जहाँ संभव हो, संबंधित सरकारी पोर्टल का लिंक।</p></div>
+          <div class="p-5 rounded-2xl bg-amber-50 dark:bg-amber-900/20"><b>⚠ सत्यापन जरूरी</b><p class="text-sm mt-2 text-slate-600 dark:text-slate-300">योजना की अंतिम जानकारी हमेशा आधिकारिक वेबसाइट पर जाँचें।</p></div>
+          <div class="p-5 rounded-2xl bg-purple-50 dark:bg-purple-900/20"><b>🤖 Live AI उपलब्ध</b><p class="text-sm mt-2 text-slate-600 dark:text-slate-300">⚙️ Settings में अपनी Gemini API key डालकर असली AI जवाब चालू करें।</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-12 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-7 flex flex-col sm:flex-row justify-between gap-3 text-sm text-slate-500">
+      <span>© 2026 Sarkari Saathi AI · AI-assisted project</span>
+      <span>यह सरकारी विभाग की आधिकारिक वेबसाइट नहीं है। जानकारी सत्यापित करें।</span>
+    </div>
+  </footer>
+
+  <div id="schemeModal" class="hidden fixed inset-0 z-50 bg-slate-950/60 p-4 items-center justify-center"><div class="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white dark:bg-slate-900 p-6 shadow-2xl"><div class="flex justify-between gap-4"><h2 id="modalTitle" class="text-2xl font-extrabold"></h2><button onclick="closeScheme()" class="text-2xl">×</button></div><p id="modalDesc" class="mt-3 text-slate-600 dark:text-slate-300"></p><div class="grid sm:grid-cols-2 gap-4 mt-6"><div class="rounded-2xl bg-blue-50 dark:bg-blue-900/20 p-4"><b>किसके लिए?</b><p id="modalAudience" class="mt-2 text-sm"></p></div><div class="rounded-2xl bg-amber-50 dark:bg-amber-900/20 p-4"><b>जरूरी दस्तावेज़</b><p id="modalDocs" class="mt-2 text-sm"></p></div></div><div class="mt-5 rounded-2xl bg-slate-100 dark:bg-slate-800 p-4"><b>आवेदन कैसे करें?</b><p id="modalSteps" class="mt-2 text-sm leading-6"></p></div><p id="modalUpdated" class="mt-4 text-xs text-slate-500"></p><a id="modalLink" target="_blank" rel="noopener" class="inline-flex mt-5 px-5 py-3 rounded-xl bg-blue-600 text-white font-bold">आधिकारिक वेबसाइट खोलें ↗</a></div></div>
+  <div id="eligibilityModal" class="hidden fixed inset-0 z-50 bg-slate-950/60 p-4 items-center justify-center"><div class="w-full max-w-lg rounded-3xl bg-white dark:bg-slate-900 p-6"><div class="flex justify-between"><h2 class="text-xl font-extrabold">Eligibility Checker</h2><button onclick="closeEligibility()" class="text-2xl">×</button></div><p class="text-sm text-slate-500 mt-2">यह केवल प्रारंभिक अनुमान है, अंतिम निर्णय संबंधित विभाग का होगा।</p><label class="label">आपकी स्थिति</label><select id="eligType" class="field"><option>विद्यार्थी</option><option>युवा</option><option>किसान</option><option>वयस्क</option><option>वरिष्ठ नागरिक</option></select><label class="label">आपकी जरूरत</label><select id="eligCat" class="field"><option value="All">सभी</option><option value="Education">शिक्षा</option><option value="Employment">रोजगार</option><option value="Agriculture">कृषि</option><option value="Health">स्वास्थ्य</option><option value="Business">व्यवसाय</option><option value="Documents">दस्तावेज़</option></select><button onclick="checkEligibility()" class="w-full mt-5 py-3 rounded-xl bg-blue-600 text-white font-bold">Matching योजनाएँ देखें</button><div id="eligResult" class="mt-5"></div></div></div>
+  <div id="toast" class="toast fixed bottom-5 right-5 z-50 px-4 py-3 rounded-xl bg-slate-900 text-white shadow-xl text-sm"></div>
+
+  <script>
+    let schemes = [];
+    async function loadSchemes(){
+      try{
+        const res = await fetch('/data/schemes.json');
+        schemes = await res.json();
+      }catch(e){
+        console.error('Schemes load nahi ho payi', e);
+        schemes = [];
+      }
+    }
+
+    const demoReplies = [
+      {keys:['scholarship','छात्रवृत्ति','स्कॉलरशिप','student'], text:'छात्रवृत्ति के लिए National Scholarship Portal उपयोगी है। वहाँ राज्य, केंद्र और अन्य छात्रवृत्ति योजनाओं की जानकारी मिल सकती है। अपनी कक्षा, आय, श्रेणी और राज्य के अनुसार eligibility जाँचें।\\n\\nआधिकारिक लिंक: scholarships.gov.in'},
+      {keys:['kisan','किसान','खेती','कृषि'], text:'किसानों के लिए PM-KISAN जैसी योजनाएँ उपयोगी हो सकती हैं। पात्रता, आवेदन और लाभ की नवीनतम जानकारी के लिए आधिकारिक पोर्टल देखें।\\n\\nआधिकारिक लिंक: pmkisan.gov.in'},
+      {keys:['job','नौकरी','रोजगार','काम'], text:'सरकारी और अन्य रोजगार अवसरों के लिए National Career Service पोर्टल देखें। वहाँ job search, career counselling और skill-related services मिलती हैं।\\n\\nआधिकारिक लिंक: ncs.gov.in'},
+      {keys:['birth','जन्म','प्रमाणपत्र','certificate'], text:'जन्म प्रमाणपत्र की प्रक्रिया राज्य और स्थानीय निकाय के अनुसार अलग हो सकती है। अपने राज्य के नगर निकाय या आधिकारिक Civil Registration portal से प्रक्रिया और दस्तावेज़ जाँचें।'},
+      {keys:['health','स्वास्थ्य','इलाज','आयुष्मान'], text:'स्वास्थ्य योजनाओं की जानकारी के लिए Ayushman Bharat PM-JAY की आधिकारिक वेबसाइट देखें। पात्रता और अस्पताल संबंधी जानकारी वहीं सत्यापित करें।\\n\\nआधिकारिक लिंक: pmjay.gov.in'},
+      {keys:['business','व्यवसाय','लोन','loan','mudra'], text:'छोटे व्यवसाय के लिए PM Mudra Yojana से जुड़ी जानकारी देख सकते हैं। ऋण की शर्तें बैंक/वित्तीय संस्था और योजना की वर्तमान guidelines पर निर्भर करती हैं।\\n\\nआधिकारिक लिंक: mudra.org.in'}
+    ];
+
+    function $(id){ return document.getElementById(id); }
+
+    /* ---------- AI status (ab backend server handle karta hai, key kahin bhi browser mein nahi) ---------- */
+    let aiConfigured = false;
+    async function checkAiStatus(){
+      try{
+        const res = await fetch('/health');
+        const data = await res.json();
+        aiConfigured = !!data.aiConfigured;
+      }catch(e){ aiConfigured = false; }
+      const label = $('aiStatusLabel'); if(label) label.textContent = aiConfigured ? 'AI Mode: Live' : 'Demo Mode';
+      const btn = $('aiStatusBtn'); if(btn) btn.classList.toggle('text-green-600', aiConfigured);
+      document.querySelectorAll('.demo-mode-note').forEach(el=> el.textContent = aiConfigured ? 'AI Mode: Live — असली AI से जवाब मिल रहे हैं।' : 'Demo Mode: AI अभी server पर configure नहीं है।');
+    }
+    function toggleMobileMenu(){ $('mobileMenu').classList.toggle('hidden'); }
+
+    async function getAIReply(q){
+      const res = await fetch('/api/chat', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ message: q })
+      });
+      const data = await res.json().catch(()=>({}));
+      if(!res.ok || !data.reply) throw new Error(data.error || ('API error ' + res.status));
+      return data.reply;
+    }
+
+    function showPage(id){
+      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+      $(id).classList.add('active');
+      document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('bg-blue-100', b.dataset.nav===id));
+      if(id==='schemes') findSchemes();
+      if(id==='chat' && !$('messages').children.length) initChat();
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function toggleTheme(){ document.documentElement.classList.toggle('dark'); localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light'); }
+    if(localStorage.getItem('theme')==='dark') document.documentElement.classList.add('dark');
+
+    function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2600); }
+    function openCategory(cat){ showPage('schemes'); $('category').value=cat; findSchemes(); }
+    function resetFilters(){ $('category').value='All'; $('state').selectedIndex=0; $('age').selectedIndex=0; findSchemes(); }
+
+    function findSchemes(){
+      const cat=$('category').value, age=$('age').value, state=$('state').value;
+      const term=($('schemeSearch')?.value||'').toLowerCase().trim();
+      let list=schemes.filter(s => (cat==='All'||s.category===cat) && (age==='सभी उम्र'||(s.audience||[]).includes(age)) && (!term || (s.name+' '+s.desc+' '+s.tags.join(' ')).toLowerCase().includes(term)));
+      $('schemeSummary').textContent=`${list.length} परिणाम · श्रेणी: ${cat==='All'?'सभी':cat} · राज्य: ${state}`;
+      $('schemeResults').innerHTML=list.map((s,i)=>`<article class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-soft hover:-translate-y-1 transition"><div class="flex items-start justify-between gap-3"><div class="text-3xl">${s.icon}</div><span class="text-xs px-2.5 py-1 rounded-full bg-green-100 text-green-700">Official link</span></div><h3 class="font-extrabold text-lg mt-4">${s.name}</h3><p class="text-sm text-slate-600 dark:text-slate-300 leading-6 mt-2">${s.desc}</p><div class="flex flex-wrap gap-2 mt-4">${s.tags.map(t=>`<span class="text-xs rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-1">${t}</span>`).join('')}</div><div class="flex gap-2 mt-5"><button onclick="openScheme(${schemes.indexOf(s)})" class="px-3 py-2 rounded-xl border border-blue-200 text-blue-700 text-sm font-bold">विवरण</button><a href="${s.url}" target="_blank" rel="noopener" class="inline-flex px-3 py-2 rounded-xl bg-blue-600 text-white text-sm font-bold">Official ↗</a></div></article>`).join('') || `<div class="md:col-span-2 p-8 rounded-2xl bg-amber-50 text-amber-800">कोई matching result नहीं मिला। Search या filters बदलकर देखें।</div>`;
+    }
+
+    function askFromHome(e){ e.preventDefault(); const q=$('homeQuestion').value.trim(); if(q) { showPage('chat'); sendQuestion(q); } }
+    function quickAsk(q){ $('homeQuestion').value=q; showPage('chat'); sendQuestion(q); }
+
+    function initChat(){
+      $('messages').innerHTML=`<div class="flex gap-3"><div class="h-9 w-9 rounded-xl bg-blue-600 text-white grid place-items-center">🤖</div><div class="max-w-[85%] rounded-2xl rounded-tl-sm bg-slate-100 dark:bg-slate-800 p-4 text-sm leading-7">नमस्ते! मैं Sarkari Saathi AI हूँ। आप सरकारी योजना, छात्रवृत्ति, नौकरी, प्रमाणपत्र या सरकारी सेवा के बारे में पूछ सकते हैं।<div class="mt-3 text-xs text-slate-500 demo-mode-note">Demo Mode: Gemini API अभी connect नहीं है।</div></div></div>`;
+    }
+    function clearChat(){ localStorage.removeItem('chatHistory'); initChat(); toast('नई चैट शुरू हो गई'); }
+    function handleChatKey(e){ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); $('chatInput').form.requestSubmit(); } }
+    function sendMessage(e){ e.preventDefault(); const q=$('chatInput').value.trim(); if(!q)return; $('chatInput').value=''; sendQuestion(q); }
+    async function sendQuestion(q){
+      if(!$('messages').children.length) initChat();
+      addMessage(q,true);
+      const typing=document.createElement('div'); typing.id='typing'; typing.innerHTML=`<div class="flex gap-3"><div class="h-9 w-9 rounded-xl bg-blue-600 text-white grid place-items-center">🤖</div><div class="typing rounded-2xl bg-slate-100 dark:bg-slate-800 px-4 py-3"><span>●</span> <span>●</span> <span>●</span></div></div>`; $('messages').appendChild(typing); $('messages').scrollTop=$('messages').scrollHeight;
+
+      if(aiConfigured){
+        try{
+          const reply = await getAIReply(q);
+          $('typing')?.remove(); addMessage(reply,false);
+        }catch(err){
+          $('typing')?.remove();
+          addMessage(getReply(q) + '\\n\\n(⚠️ AI API से जवाब नहीं मिल पाया, इसलिए Demo जवाब दिखाया गया। Settings में जाकर API key जाँचें।)', false);
+        }
+      } else {
+        setTimeout(()=>{ $('typing')?.remove(); addMessage(getReply(q),false); },650);
+      }
+    }
+    function addMessage(text,user){
+      const row=document.createElement('div'); row.className=`flex gap-3 ${user?'justify-end':''}`;
+      row.innerHTML=user
+        ? `<div class="max-w-[85%] rounded-2xl rounded-tr-sm bg-blue-600 text-white p-4 text-sm leading-7">${escapeHtml(text)}</div>`
+        : `<div class="h-9 w-9 shrink-0 rounded-xl bg-blue-600 text-white grid place-items-center">🤖</div><div class="max-w-[85%] rounded-2xl rounded-tl-sm bg-slate-100 dark:bg-slate-800 p-4 text-sm leading-7 whitespace-pre-line">${escapeHtml(text)}<div class="mt-3 flex gap-2"><button onclick="copyText(this)" class="text-xs px-2 py-1 rounded-lg bg-white/70 dark:bg-slate-700">कॉपी</button><button onclick="toast('धन्यवाद! Feedback सेव हो गया')" class="text-xs px-2 py-1 rounded-lg bg-white/70 dark:bg-slate-700">👍</button><button onclick="toast('Feedback सेव हो गया')" class="text-xs px-2 py-1 rounded-lg bg-white/70 dark:bg-slate-700">👎</button></div></div>`;
+      $('messages').appendChild(row); $('messages').scrollTop=$('messages').scrollHeight;
+    }
+    function getReply(q){
+      const lower=q.toLowerCase();
+      const found=demoReplies.find(r=>r.keys.some(k=>lower.includes(k)));
+      return found ? found.text : 'आपका सवाल समझने के लिए थोड़ा और विवरण दें। उदाहरण के लिए अपना राज्य, उम्र/कक्षा और जरूरत बताएं।\\n\\nअभी यह Demo Mode है। Gemini API connect होने के बाद chatbot अधिक natural और विस्तृत उत्तर दे सकेगा।';
+    }
+    function copyText(btn){ const text=btn.parentElement.parentElement.innerText.replace(/कॉपी|👍|👎/g,'').trim(); navigator.clipboard?.writeText(text); toast('उत्तर कॉपी हो गया'); }
+    function escapeHtml(s){ return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
+
+    const style=document.createElement('style');
+    style.textContent=`
+      .quick-chip{padding:.55rem .8rem;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid #dbeafe;color:#1d4ed8;font-size:.8rem;font-weight:700}
+      .dark .quick-chip{background:rgba(15,23,42,.7);border-color:#1e40af;color:#bfdbfe}
+      .feature-card{text-align:left;padding:1.25rem;border:1px solid #e2e8f0;border-radius:1.25rem;background:white;display:flex;flex-direction:column;gap:.45rem;transition:.2s}
+      .dark .feature-card{background:#0f172a;border-color:#1e293b}.feature-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(15,23,42,.08)}.feature-card span{font-size:1.8rem}.feature-card small{color:#64748b}
+      .dark .feature-card small{color:#94a3b8}.label{display:block;font-size:.8rem;font-weight:700;margin:.9rem 0 .35rem}.field{width:100%;padding:.7rem;border:1px solid #e2e8f0;border-radius:.75rem;background:transparent;outline:none}.dark .field{border-color:#334155;background:#0f172a}
+      .service-card{display:flex;align-items:flex-start;gap:.9rem;padding:1.25rem;border:1px solid #e2e8f0;border-radius:1.25rem;background:white;transition:.2s}.dark .service-card{background:#0f172a;border-color:#1e293b}.service-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(15,23,42,.08)}.service-card>span{font-size:1.8rem}.service-card div{flex:1}.service-card b{font-weight:800}.service-card p{font-size:.82rem;color:#64748b;line-height:1.5;margin-top:.35rem}.dark .service-card p{color:#94a3b8}.service-card strong{color:#2563eb}
+    `;
+    document.head.appendChild(style);
+    (async function init(){
+      await loadSchemes();
+      initChat();
+      findSchemes();
+      checkAiStatus();
+    })();
+  
+    function openScheme(i){ const s=schemes[i]; $('modalTitle').textContent=s.icon+' '+s.name; $('modalDesc').textContent=s.desc; $('modalAudience').textContent=(s.audience||[]).join(', ')||'योजना के official rules देखें'; $('modalDocs').textContent=(s.docs||[]).join(' · ')||'Official portal पर जाँचें'; $('modalSteps').textContent=s.steps||'Official website पर प्रक्रिया देखें'; $('modalUpdated').textContent='नोट: '+(s.updated||'जानकारी official website पर verify करें'); $('modalLink').href=s.url; $('schemeModal').classList.remove('hidden'); $('schemeModal').classList.add('flex'); }
+    function closeScheme(){ $('schemeModal').classList.add('hidden'); $('schemeModal').classList.remove('flex'); }
+    function openEligibility(){ $('eligibilityModal').classList.remove('hidden'); $('eligibilityModal').classList.add('flex'); }
+    function closeEligibility(){ $('eligibilityModal').classList.add('hidden'); $('eligibilityModal').classList.remove('flex'); }
+    function checkEligibility(){ const type=$('eligType').value, cat=$('eligCat').value; const list=schemes.filter(s=>(cat==='All'||s.category===cat)&&(s.audience||[]).includes(type)).slice(0,8); $('eligResult').innerHTML=list.length?'<b>संभावित matching योजनाएँ:</b><div class="mt-3 space-y-2">'+list.map(s=>`<button class="block w-full text-left p-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-sm font-semibold" onclick="closeEligibility();openScheme(${schemes.indexOf(s)})">${s.icon} ${s.name}</button>`).join('')+'</div>':'<p class="p-3 rounded-xl bg-amber-50 text-amber-800 text-sm">इस जानकारी से कोई matching योजना नहीं मिली। Official portal पर अलग से जाँचें।</p>'; }
+</script>
+</body>
+</html>

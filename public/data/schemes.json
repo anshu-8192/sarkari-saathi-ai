@@ -1,0 +1,416 @@
+[
+  {
+    "name": "प्रधानमंत्री किसान सम्मान निधि",
+    "category": "Agriculture",
+    "icon": "🌾",
+    "desc": "पात्र किसानों के लिए आय सहायता से जुड़ी केंद्रीय योजना।",
+    "tags": [
+      "किसान",
+      "कृषि"
+    ],
+    "audience": [
+      "किसान"
+    ],
+    "state": "Central",
+    "docs": [
+      "आधार/पहचान पत्र",
+      "बैंक खाता विवरण",
+      "भूमि संबंधी विवरण"
+    ],
+    "steps": "आधिकारिक पोर्टल पर किसान कॉर्नर और आवेदन/स्थिति विकल्प देखें।",
+    "url": "https://pmkisan.gov.in/",
+    "official": "pmkisan.gov.in",
+    "updated": "आधिकारिक पोर्टल पर नवीनतम जानकारी देखें।"
+  },
+  {
+    "name": "प्रधानमंत्री फसल बीमा योजना",
+    "category": "Agriculture",
+    "icon": "🌱",
+    "desc": "अधिसूचित फसलों के लिए फसल बीमा से संबंधित योजना।",
+    "tags": [
+      "किसान",
+      "बीमा"
+    ],
+    "audience": [
+      "किसान"
+    ],
+    "state": "Central",
+    "docs": [
+      "किसान पहचान",
+      "फसल/भूमि विवरण",
+      "बैंक विवरण"
+    ],
+    "steps": "अपने राज्य की अधिसूचना और अधिकृत बैंक/CSC से जानकारी लें।",
+    "url": "https://pmfby.gov.in/",
+    "official": "pmfby.gov.in",
+    "updated": "आधिकारिक पोर्टल पर नवीनतम जानकारी देखें।"
+  },
+  {
+    "name": "National Scholarship Portal",
+    "category": "Education",
+    "icon": "🎓",
+    "desc": "विभिन्न सरकारी छात्रवृत्तियों की जानकारी और आवेदन का केंद्रीय पोर्टल।",
+    "tags": [
+      "विद्यार्थी",
+      "छात्रवृत्ति"
+    ],
+    "audience": [
+      "विद्यार्थी"
+    ],
+    "state": "Central",
+    "docs": [
+      "आधार/पहचान",
+      "आय प्रमाणपत्र",
+      "जाति/निवास प्रमाणपत्र",
+      "मार्कशीट"
+    ],
+    "steps": "पोर्टल पर OTR/registration करें और उपलब्ध scholarship के लिए आवेदन करें।",
+    "url": "https://scholarships.gov.in/",
+    "official": "scholarships.gov.in",
+    "updated": "आवेदन की तारीख और पात्रता पोर्टल पर जाँचें।"
+  },
+  {
+    "name": "PM Vidya Lakshmi",
+    "category": "Education",
+    "icon": "📚",
+    "desc": "शिक्षा ऋण और छात्रवृत्ति से संबंधित जानकारी का मंच।",
+    "tags": [
+      "विद्यार्थी",
+      "शिक्षा ऋण"
+    ],
+    "audience": [
+      "विद्यार्थी",
+      "युवा"
+    ],
+    "state": "Central",
+    "docs": [
+      "शैक्षणिक दस्तावेज़",
+      "पहचान",
+      "आय/बैंक दस्तावेज़"
+    ],
+    "steps": "पोर्टल पर उपलब्ध loan/scholarship विकल्प देखें।",
+    "url": "https://www.vidyalakshmi.co.in/",
+    "official": "vidyalakshmi.co.in",
+    "updated": "शर्तें संबंधित संस्था से सत्यापित करें।"
+  },
+  {
+    "name": "National Career Service",
+    "category": "Employment",
+    "icon": "💼",
+    "desc": "नौकरी खोजने, career counselling और रोजगार सेवाओं के लिए पोर्टल।",
+    "tags": [
+      "युवा",
+      "नौकरी"
+    ],
+    "audience": [
+      "युवा",
+      "वयस्क"
+    ],
+    "state": "Central",
+    "docs": [
+      "मोबाइल नंबर",
+      "शैक्षणिक विवरण",
+      "रिज्यूमे"
+    ],
+    "steps": "पोर्टल पर job seeker registration करके jobs और counselling देखें।",
+    "url": "https://www.ncs.gov.in/",
+    "official": "ncs.gov.in",
+    "updated": "नौकरी की शर्तें employer से जाँचें।"
+  },
+  {
+    "name": "Skill India Digital",
+    "category": "Employment",
+    "icon": "🛠️",
+    "desc": "कौशल प्रशिक्षण और learning opportunities खोजने का डिजिटल मंच।",
+    "tags": [
+      "युवा",
+      "स्किल"
+    ],
+    "audience": [
+      "युवा",
+      "विद्यार्थी"
+    ],
+    "state": "Central",
+    "docs": [
+      "मोबाइल नंबर",
+      "पहचान विवरण"
+    ],
+    "steps": "पोर्टल पर course और training centre की उपलब्धता देखें।",
+    "url": "https://www.skillindiadigital.gov.in/",
+    "official": "skillindiadigital.gov.in",
+    "updated": "कोर्स की उपलब्धता पोर्टल पर जाँचें।"
+  },
+  {
+    "name": "PMKVY",
+    "category": "Employment",
+    "icon": "🎯",
+    "desc": "कौशल विकास और प्रशिक्षण से संबंधित सरकारी पहल।",
+    "tags": [
+      "स्किल",
+      "प्रशिक्षण"
+    ],
+    "audience": [
+      "युवा"
+    ],
+    "state": "Central",
+    "docs": [
+      "पहचान पत्र",
+      "शैक्षणिक विवरण"
+    ],
+    "steps": "अधिकृत प्रशिक्षण केंद्र और उपलब्ध courses की जानकारी लें।",
+    "url": "https://www.pmkvyofficial.org/",
+    "official": "pmkvyofficial.org",
+    "updated": "प्रशिक्षण की वर्तमान शर्तें जाँचें।"
+  },
+  {
+    "name": "आयुष्मान भारत PM-JAY",
+    "category": "Health",
+    "icon": "🏥",
+    "desc": "पात्र परिवारों के लिए स्वास्थ्य सुरक्षा से संबंधित योजना।",
+    "tags": [
+      "स्वास्थ्य",
+      "परिवार"
+    ],
+    "audience": [
+      "वयस्क",
+      "वरिष्ठ नागरिक"
+    ],
+    "state": "Central",
+    "docs": [
+      "पहचान पत्र",
+      "परिवार/लाभार्थी विवरण"
+    ],
+    "steps": "पात्रता और empanelled hospital की जानकारी आधिकारिक पोर्टल पर देखें।",
+    "url": "https://pmjay.gov.in/",
+    "official": "pmjay.gov.in",
+    "updated": "पात्रता पोर्टल पर सत्यापित करें।"
+  },
+  {
+    "name": "प्रधानमंत्री मुद्रा योजना",
+    "category": "Business",
+    "icon": "🏪",
+    "desc": "छोटे व्यवसाय और उद्यमिता के लिए ऋण संबंधी जानकारी।",
+    "tags": [
+      "व्यवसाय",
+      "लोन"
+    ],
+    "audience": [
+      "युवा",
+      "वयस्क"
+    ],
+    "state": "Central",
+    "docs": [
+      "KYC",
+      "व्यवसाय योजना",
+      "बैंक दस्तावेज़"
+    ],
+    "steps": "बैंक या अधिकृत वित्तीय संस्था से वर्तमान loan terms पूछें।",
+    "url": "https://www.mudra.org.in/",
+    "official": "mudra.org.in",
+    "updated": "ऋण स्वीकृति बैंक के नियमों पर निर्भर है।"
+  },
+  {
+    "name": "PM SVANidhi",
+    "category": "Business",
+    "icon": "🛍️",
+    "desc": "स्ट्रीट वेंडर्स के लिए वित्तीय सहायता से संबंधित योजना।",
+    "tags": [
+      "व्यवसाय",
+      "वेंडर"
+    ],
+    "audience": [
+      "वयस्क"
+    ],
+    "state": "Central",
+    "docs": [
+      "पहचान",
+      "वेंडिंग/स्थानीय प्रमाण"
+    ],
+    "steps": "नगर निकाय या आधिकारिक पोर्टल के माध्यम से पात्रता जाँचें।",
+    "url": "https://pmsvanidhi.mohua.gov.in/",
+    "official": "pmsvanidhi.mohua.gov.in",
+    "updated": "स्थानीय निकाय से सत्यापित करें।"
+  },
+  {
+    "name": "DigiLocker",
+    "category": "Documents",
+    "icon": "📁",
+    "desc": "डिजिटल दस्तावेज़ों को सुरक्षित रूप से प्राप्त और उपयोग करने की सुविधा।",
+    "tags": [
+      "दस्तावेज़",
+      "सभी"
+    ],
+    "audience": [
+      "विद्यार्थी",
+      "युवा",
+      "वयस्क",
+      "वरिष्ठ नागरिक"
+    ],
+    "state": "Central",
+    "docs": [
+      "मोबाइल नंबर",
+      "आधार/पहचान"
+    ],
+    "steps": "आधिकारिक वेबसाइट या ऐप पर account बनाकर documents access करें।",
+    "url": "https://www.digilocker.gov.in/",
+    "official": "digilocker.gov.in",
+    "updated": "सेवा की शर्तें पोर्टल पर देखें।"
+  },
+  {
+    "name": "e-Shram",
+    "category": "Employment",
+    "icon": "🧾",
+    "desc": "असंगठित क्षेत्र के श्रमिकों से संबंधित पंजीकरण और जानकारी।",
+    "tags": [
+      "श्रमिक",
+      "रोजगार"
+    ],
+    "audience": [
+      "वयस्क"
+    ],
+    "state": "Central",
+    "docs": [
+      "आधार",
+      "मोबाइल",
+      "बैंक विवरण"
+    ],
+    "steps": "आधिकारिक पोर्टल पर registration प्रक्रिया देखें।",
+    "url": "https://eshram.gov.in/",
+    "official": "eshram.gov.in",
+    "updated": "पात्रता और लाभ आधिकारिक पोर्टल पर जाँचें।"
+  },
+  {
+    "name": "MyGov India",
+    "category": "Documents",
+    "icon": "🇮🇳",
+    "desc": "नागरिक भागीदारी, सरकारी अभियानों और सार्वजनिक जानकारी का मंच।",
+    "tags": [
+      "नागरिक",
+      "जानकारी"
+    ],
+    "audience": [
+      "विद्यार्थी",
+      "युवा",
+      "वयस्क"
+    ],
+    "state": "Central",
+    "docs": [],
+    "steps": "पोर्टल पर campaigns, discussions और opportunities देखें।",
+    "url": "https://www.mygov.in/",
+    "official": "mygov.in",
+    "updated": "पोर्टल पर वर्तमान अवसर देखें."
+  },
+  {
+    "name": "प्रधानमंत्री जन धन योजना",
+    "category": "Business",
+    "icon": "🏦",
+    "desc": "बैंकिंग सेवाओं तक पहुँच और वित्तीय समावेशन से संबंधित योजना।",
+    "tags": [
+      "बैंकिंग",
+      "वित्त"
+    ],
+    "audience": [
+      "वयस्क"
+    ],
+    "state": "Central",
+    "docs": [
+      "पहचान पत्र",
+      "पता प्रमाण"
+    ],
+    "steps": "बैंक शाखा या आधिकारिक जानकारी के माध्यम से खाता संबंधी प्रक्रिया जानें।",
+    "url": "https://financialservices.gov.in/",
+    "official": "financialservices.gov.in",
+    "updated": "बैंक से वर्तमान नियम जाँचें।"
+  },
+  {
+    "name": "सुकन्या समृद्धि योजना",
+    "category": "Business",
+    "icon": "👧",
+    "desc": "बालिकाओं के लिए बचत योजना से संबंधित जानकारी।",
+    "tags": [
+      "बालिका",
+      "बचत"
+    ],
+    "audience": [
+      "वयस्क"
+    ],
+    "state": "Central",
+    "docs": [
+      "बालिका का जन्म प्रमाण",
+      "अभिभावक KYC"
+    ],
+    "steps": "अधिकृत बैंक या डाकघर से वर्तमान नियम और खाता प्रक्रिया पूछें।",
+    "url": "https://www.indiapost.gov.in/",
+    "official": "indiapost.gov.in",
+    "updated": "वर्तमान ब्याज और नियम आधिकारिक स्रोत से जाँचें।"
+  },
+  {
+    "name": "National Apprenticeship Promotion Scheme",
+    "category": "Employment",
+    "icon": "🔧",
+    "desc": "Apprenticeship और on-the-job training से संबंधित जानकारी।",
+    "tags": [
+      "प्रशिक्षण",
+      "युवा"
+    ],
+    "audience": [
+      "युवा",
+      "विद्यार्थी"
+    ],
+    "state": "Central",
+    "docs": [
+      "शैक्षणिक दस्तावेज़",
+      "पहचान"
+    ],
+    "steps": "Apprenticeship portal पर opportunities और eligibility देखें।",
+    "url": "https://www.apprenticeshipindia.gov.in/",
+    "official": "apprenticeshipindia.gov.in",
+    "updated": "वर्तमान vacancies पोर्टल पर जाँचें।"
+  },
+  {
+    "name": "Birth Certificate Services",
+    "category": "Documents",
+    "icon": "📜",
+    "desc": "जन्म पंजीकरण और प्रमाणपत्र प्रक्रिया के लिए संबंधित सरकारी पोर्टल।",
+    "tags": [
+      "जन्म",
+      "प्रमाणपत्र"
+    ],
+    "audience": [
+      "वयस्क"
+    ],
+    "state": "Central",
+    "docs": [
+      "अस्पताल/जन्म रिकॉर्ड",
+      "माता-पिता का पहचान विवरण"
+    ],
+    "steps": "राज्य या स्थानीय निकाय के Civil Registration portal से प्रक्रिया जाँचें।",
+    "url": "https://crsorgi.gov.in/",
+    "official": "crsorgi.gov.in",
+    "updated": "राज्य के अनुसार प्रक्रिया बदल सकती है।"
+  },
+  {
+    "name": "UMANG",
+    "category": "Documents",
+    "icon": "📱",
+    "desc": "कई सरकारी सेवाओं तक पहुँच देने वाला डिजिटल मंच।",
+    "tags": [
+      "सेवाएँ",
+      "मोबाइल"
+    ],
+    "audience": [
+      "विद्यार्थी",
+      "युवा",
+      "वयस्क",
+      "वरिष्ठ नागरिक"
+    ],
+    "state": "Central",
+    "docs": [
+      "मोबाइल नंबर"
+    ],
+    "steps": "UMANG ऐप/वेबसाइट पर सेवा खोजें और विभागीय निर्देश देखें।",
+    "url": "https://web.umang.gov.in/",
+    "official": "web.umang.gov.in",
+    "updated": "सेवा की उपलब्धता पोर्टल पर जाँचें."
+  }
+]
