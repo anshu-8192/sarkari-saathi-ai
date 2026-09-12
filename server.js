@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.6-flash';
+
 // Schemes data load karo — AI ko context dene ke liye
 let schemesContext = '';
 try {
@@ -22,7 +23,7 @@ try {
   console.warn('schemes.json load nahi ho payi, AI bina context ke chalega.', e.message);
 }
 
-const SYSTEM_PROMPT = `Tum "Sarkari Saathi AI" ho — Bharat ki sarkari yojanaon, scholarships, jobs aur documents ke baare mein saral Hindi/Hinglish mein madad karne wale AI assistant. Hamesha short, clear jawab do (max ~120 words), aur jahan relevant ho official website ka naam batao. Agar exact jaankari na ho, to user ko official portal par verify karne ko kaho. Kabhi bhi kisi scheme ke baare mein galat guarantee mat do. Sirf sarkari yojanaon/services se related sawalon ke jawab do; agar sawaal bilkul unrelated ho, to politely bata do ki tum sirf sarkari jaankari mein madad kar sakte ho.
+const SYSTEM_PROMPT = `Tum "Sarkari Saathi AI" ho — Bharat ki sarkari yojanaon, scholarships, jobs aur documents ke baare mein saral Hindi/Hinglish mein madad karne wale AI assistant. Hamesha clear aur poora jawab do (zaroorat ho to 150-200 words tak), aur jahan relevant ho official website ka naam batao. Jawab hamesha poora khatam karo, kabhi beech mein mat chhodo. Bold text ke liye ** ka use mat karo, plain simple text mein likho. Agar exact jaankari na ho, to user ko official portal par verify karne ko kaho. Kabhi bhi kisi scheme ke baare mein galat guarantee mat do. Sirf sarkari yojanaon/services se related sawalon ke jawab do; agar sawaal bilkul unrelated ho, to politely bata do ki tum sirf sarkari jaankari mein madad kar sakte ho.
 
 Hamare database mein ye schemes hain (reference ke liye):
 ${schemesContext}`;
@@ -50,7 +51,7 @@ app.post('/api/chat', limiter, async (req, res) => {
       body: JSON.stringify({
         system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
         contents: [{ role: 'user', parts: [{ text: message }] }],
-        generationConfig: { maxOutputTokens: 400, temperature: 0.4 }
+        generationConfig: { maxOutputTokens: 1024, temperature: 0.4 }
       })
     });
 
